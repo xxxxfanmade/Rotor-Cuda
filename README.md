@@ -1,6 +1,7 @@
 # Rotor-Cuda
-Это модифицированая версия [VanitySearch](https://github.com/JeanLucPons/VanitySearch/). 
-Огромная благодарность [kanhavishva](https://github.com/kanhavishva) и всем разработчикам, чьи коды были использованы в Rotor-Cuda.
+![alt text](https://github.com/phrutis/Rotor/blob/main/Others/1.jpg "Rotor-Cuda")
+ Это модифицированая версия [VanitySearch](https://github.com/JeanLucPons/VanitySearch/). 
+ Огромная благодарность [kanhavishva](https://github.com/kanhavishva) и всем разработчикам, чьи коды были использованы в Rotor-Cuda.
 ## Параметры:
 ```
 Usage: Rotor-Cuda [options...]
