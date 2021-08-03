@@ -1,4 +1,4 @@
-# Rotor-Cuda
+# Rotor-Cuda v1.01
 ![alt text](https://github.com/phrutis/Rotor/blob/main/Others/1.jpg "Rotor-Cuda")
  Это модифицированая версия [VanitySearch](https://github.com/JeanLucPons/VanitySearch/). 
  Огромная благодарность [kanhavishva](https://github.com/kanhavishva) и всем разработчикам, чьи коды были использованы в Rotor-Cuda.
@@ -19,71 +19,64 @@ Options:
     -t, --thread           Сколько задействовать ядер процессора CPU Рекомендую -t 0 (не использовать CPU)
     -e, --nosse            Disable SSE hash function
     -l, --list             List cuda enabled devices
-    -r, --rkey             Через сколько генерировать новый хэш, по умолчании отключено. Рекомендую -r 1000000000
-    -n, --nbit             В каком битовом диапазоне генерировать хэши. Рекомендую -n 256 (-n 255) 
+    -r, --rkey             Через сколько рандомно генерировать новые стартовые точки. Рекомендую -r 100000000000
+    -n, --nbit             В каком битовом диапазоне генерировать хэши. Рекомендую -n 256 (-n 255,254) 
     -f, --file             RIPEMD160 binary hash file path
     -h, --help             Shows this page
 
-```
+``` 
 
 ```
-Rotor-Cuda.exe -t 0 -g -i 0 -x 256,256 -n 120 -f address1-160-sorted.bin
 
-Rotor v1.00
+C:\Users\user>KeyHunt-Cuda.exe -t 0 -g -i 0 -x 288,512 -f 10.bin -r 100000000000 -n 256
+
+Rotor-Cuda v1.01 (04.08.2021)
 
 MODE         : COMPRESSED
 DEVICE       : GPU
 CPU THREAD   : 0
 GPU IDS      : 0
-GPU GRIDSIZE : 256x256
+GPU GRIDSIZE : 288x512
 SSE          : YES
 SEED         :
-RKEY(Mk)     : 0
-NBIT         : 120
+RKEY(Mk)     : 100000000000
+NBIT         : 256
 MAX FOUND    : 65536
-HASH160 FILE : address1-160-sorted.bin
+HASH160 FILE : 10.bin
 OUTPUT FILE  : Found.txt
 
 Loading      : 100 %
-Loaded       : 73,446 address
+Loaded       : 90,693 address
 
-Bloom at 00000233F3AFE6F0
+Bloom at 000002805676CF20
   Version    : 2.1
-  Entries    : 146892
+  Entries    : 181386
   Error      : 0.0000010000
-  Bits       : 4223905
+  Bits       : 5215786
   Bits/Elem  : 28.755175
-  Bytes      : 527989 (0 MB)
+  Bytes      : 651974 (0 MB)
   Hash funcs : 20
 
-Start Time   : Sun Mar 28 01:39:10 2021
-Base Key     : 0000000000000000000000000000000000B2E2584BCDDD8EF7382DF58863DB4B (120 bit)
+Start Time   : Tue Aug  3 22:09:05 2021
+Base Key     : Reloads random start points every 100000000000
+GPU          : GPU #0 NVIDIA GeForce RTX 2070 (36x64 cores) Grid(288x512)
 
-GPU          : GPU #0 GeForce GTX 1650 (14x64 cores) Grid(256x128)
+  Project Rotor-CUDA         :   https://github.com/phrutis/Rotor-Cuda
+  Donate BitCoin             :   bc1qh2mvnf5fujg93mwl8pe688yucaw9sflmwsukz9
 
-[00:00:08] [CPU+GPU: 494.87 Mk/s] [GPU: 494.87 Mk/s] [T: 4,026,531,840] [F: 0]
+ [B1F626663233C2F8EB256B060834980BB4A1CE8991798D26D1B849FEB8F10889] [00:03:28] [CPU+GPU: 1169.63 Mk/s] [GPU: 1169.63 Mk/s] [T: 202,031,235,072] [F: 0]
 ```
-
-## Запуск рандома:
-```
-Rotor-Cuda.exe -t 0 -g -i 0 -x 256,256 -n 256 -r 1000000000 -f address1-160-sorted.bin
-```
-- Это самая быстрая программа рандом генерации!
-- Скорость зависит параметров и количества адресов в базе.
-- С небольшой базой ~10.000 адресов RTX2070 выдает 1200-1400 Mk/s
-
-## Запуск рандома с отображением генерации хэшей:
-```
-Rotor-Cuda-display-hex.exe -t 0 -g -i 0 -x 256,256 -n 256 -r 256 -f address1-160-sorted.bin
-```
-- В отличии от других программ Rotor-Cuda не выводит генерируемые хэши на экран. 
-- Сделал экспериментальную, тестовую версию Rotor-Cuda-display-hex.exe 
-- Сделана она для того что бы немного увидеть кота в мешке. 
-- Из-за вывода генерируемых хэшей на экран, очень падает скорость.
-- Используйте эту программу только для тестов.
-## Часто задаваемые вопросы:
-- [Как создать базу адресов .bin ?](https://github.com/phrutis/Rotor/issues/1)
-- [Гипотеза - Почему Random лучше перебора ?](https://github.com/phrutis/Rotor/issues/3)
+## Примичания: 
+- Для новичков [Как создать базу адресов .bin ?](https://github.com/phrutis/Rotor/issues/1) и [Гипотеза - Почему Random лучше перебора](https://github.com/phrutis/Rotor/issues/3)
+- Для работы программы нужно преобразовать Legacy адреса (которые начинаются на 1) в бинарные хэши160 RIPEMD160. 
+- Для преобразования используйте программу [b58dec](https://github.com/phrutis/Rotor/blob/main/Others/b58dec.exe). ```Команда: b58dec.exe 1.txt 2.bin```
+- Важно выполнить сортировку файла 2.bin Иначе Bloom фильтр поиска не будет работать должным образом. 
+- Что бы отсортировать 2.bin используйте программу [RMD160-Sort](https://github.com/phrutis/Rotor/blob/main/Others/RMD160-Sort.exe) ```Команда: RMD160-Sort.exe 2.bin addresse160-Sort.bin```
+- Минимальное количество хешей160 в addresse160-Sort.bin должно быть не менее 1000!
+- Запуск 2 GPUs команда: ```Rotor-Cuda.exe -t 0 --gpu --gpux 256,256,256,256 --gpui 0,1 -n 256 -f base.bin -r 1000000000```
+- Rotor-Cuda рандомно создает несколько сотен миллионов стартовых точек, делит их на потоки, начинает перебирать. 
+- Рекомендую установить ```-r 100000000000``` когда на счетчике будет T:100000000000 стартовые точки обновятся. 
+- Для любителей Full Random ```-r 1``` (каждый хеш новый), в этом режиме скорость упадёт в 5-10 раз.   
 
 ## Donation
 - BTC: bc1qh2mvnf5fujg93mwl8pe688yucaw9sflmwsukz9
