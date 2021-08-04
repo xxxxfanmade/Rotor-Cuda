@@ -3,7 +3,7 @@
  Это модифицированая версия [VanitySearch](https://github.com/JeanLucPons/VanitySearch/). 
  Огромная благодарность [kanhavishva](https://github.com/kanhavishva) и всем разработчикам, чьи коды были использованы в Rotor-Cuda.
 
-## Примичания:  
+## Примечания:  
 - [Как создать базу адресов .bin ?](https://github.com/phrutis/Rotor/issues/1) 
 - [Гипотеза - Почему Random лучше перебора](https://github.com/phrutis/Rotor/issues/3)
 - Для работы программы нужно преобразовать Legacy адреса (которые начинаются на 1) в бинарные хэши160 RIPEMD160. 
